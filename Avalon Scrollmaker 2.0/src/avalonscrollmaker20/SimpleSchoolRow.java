@@ -21,9 +21,11 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package avalonscrollmaker20;
 
+import buoy.widget.BLabel;
+import buoy.widget.BTextField;
+import buoy.widget.LayoutInfo;
 import buoy.widget.RowContainer;
 
 /**
@@ -32,12 +34,23 @@ import buoy.widget.RowContainer;
  */
 public class SimpleSchoolRow extends RowContainer
 {
-  // School Label
-  // Normal Spell Input
-  // Breath Spell Input
+  public BLabel schoolLabel;
+  public BTextField spellInput;
+  public BTextField breathInput;
+  private static final int WIDTH = 3;
 
-  public SimpleSchoolRow()
+  public SimpleSchoolRow( String schoolName )
   {
-    // moar stuff
+    super();
+    setDefaultLayout( new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.HORIZONTAL ) );
+
+    schoolLabel = new BLabel( schoolName );
+    spellInput = new BTextField( WIDTH );
+    breathInput = new BTextField( WIDTH );
+
+    this.add( schoolLabel );
+    this.add( spellInput );
+    this.add( breathInput );
   }
+
 }
