@@ -24,18 +24,55 @@
 
 package avalonscrollmaker20;
 
+import buoy.widget.*;
+
 /**
- * @desc   Starter class. Not REALLY needed as separate.
+ * @desc   Displays the GUI
  * @author Michael Weigle <michael.weigle@gmail.com>
  */
-public class Main
+public class ScrollMaker extends BFrame
 {
+  // MenuBar
+    // Actions Menu
+      // Print Item
+      // Undo Item
+      // Reset Item
+      // Exit Item
+    // Help Menu
+      // Use DB Item
+      // About Item
+      // Support Item
+    // Simple Switch
+    // Design Switch
 
-  public static void main( String[] args )
+  // Simple Container
+    // Earth Tab
+    // Air Tab
+    // Fire Tab
+    // Water Tab
+    // Nexus Tab
+    // Void Tab
+
+  // Design Container
+    // Add Spell
+      // Current Spell Description
+      // Add Spell Button
+    // Remove Spell
+      // Last Spell Description
+      // Remove Spell Button
+
+  // Dashboard Container
+    // Total Spells Number
+    // Total Pages Number
+
+  public ScrollMaker()
   {
-    // Pop open scrollmaker window
-    new ScrollMaker();
+    super( "Avalon Scrollmaker 2.0" );
 
-    // Does anything else need to go here?
+    // Make stuff!
+
+    pack();
+    setVisible( true );
   }
+
 }
