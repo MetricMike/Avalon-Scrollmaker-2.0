@@ -23,24 +23,44 @@
  */
 package avalonscrollmaker20;
 
-import buoy.widget.FormContainer;
+import buoy.widget.ColumnContainer;
+import buoy.widget.LayoutInfo;
 
 /**
  * @desc   Object for displaying an Element Tab inside Simple Design
  * @author Michael Weigle <michael.weigle@gmail.com>
  */
-public class SimpleTab extends FormContainer
+public class SimpleTab extends ColumnContainer
 {
-  // Thekso School Row
-  // Hetter School Row
-  // Chatten School Row
-  // Xietep School Row
-  // Tasol School Row
-  // Ojiin School Row
-  // Zun School Row
-  
-  public SimpleTab( int numCols, int numRows )
+  public SimpleSchoolRow theksoRow;
+  public SimpleSchoolRow hetterRow;
+  public SimpleSchoolRow chattenRow;
+  public SimpleSchoolRow xietepRow;
+  public SimpleSchoolRow tasolRow;
+  public SimpleSchoolRow ojiinRow;
+  public SimpleSchoolRow zunRow;
+
+  public SimpleTab()
   {
-    super( numCols, numRows );
+    super();
+
+    this.setDefaultLayout( new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.VERTICAL ) );
+
+    theksoRow = new SimpleSchoolRow( "Thekso" );
+    hetterRow = new SimpleSchoolRow( "Hetter" );
+    chattenRow = new SimpleSchoolRow( "Chatten" );
+    xietepRow = new SimpleSchoolRow( "Xietep" );
+    tasolRow = new SimpleSchoolRow( "Tasol" );
+    ojiinRow = new SimpleSchoolRow( "Ojiin" );
+    zunRow = new SimpleSchoolRow( "Zun" );
+
+    this.add( theksoRow );
+    this.add( hetterRow );
+    this.add( chattenRow );
+    this.add( xietepRow );
+    this.add( tasolRow );
+    this.add( ojiinRow );
+    this.add( zunRow );
   }
+
 }
