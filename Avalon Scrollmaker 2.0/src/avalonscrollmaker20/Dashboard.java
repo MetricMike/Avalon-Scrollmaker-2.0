@@ -23,53 +23,44 @@
  */
 package avalonscrollmaker20;
 
-import buoy.widget.BButton;
+import buoy.widget.BLabel;
+import buoy.widget.BSeparator;
 import buoy.widget.BTextField;
-import buoy.widget.ColumnContainer;
-import buoy.widget.LayoutInfo;
+import buoy.widget.GridContainer;
+import java.awt.Dimension;
 
 /**
- * @desc   Object containing GUI elements to remove/add spells in Designer mode
+ * @desc   Contains counters for spell and page #s.
  * @author Michael Weigle <michael.weigle@gmail.com>
  */
-public class designSpellDescription extends ColumnContainer
+public class Dashboard extends GridContainer
 {
-  public BTextField spellCode;
-  public BTextField spellTitle;
-  public BTextField spellSchool;
-  public BButton spellAction;
-  public static final int WIDTH = 25;
+  private BLabel spellNumLabel;
+  private BTextField spellNumCounter;
 
-  public designSpellDescription( boolean editable )
+  private BLabel pageNumLabel;
+  private BTextField pageNumCounter;
+
+  private static final int WIDTH = 3;
+
+  public Dashboard()
   {
-    super();
-    this.setDefaultLayout( new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.VERTICAL ) );
+    super( 5, 1 );
 
-    spellCode = new BTextField();
-    spellTitle = new BTextField();
-    spellSchool = new BTextField();
-    spellAction = new BButton();
+    spellNumLabel = new BLabel( "Total Number of Spells:" );
+      spellNumLabel.setAlignment( BLabel.CENTER );
+    pageNumLabel = new BLabel( "Total Number of Pages: " );
+      pageNumLabel.setAlignment( BLabel.CENTER );
 
-    if ( !editable )
-    {
-      spellCode.setEditable( false );
-      spellTitle.setEditable( false );
-      spellSchool.setEditable( false );
+    spellNumCounter = new BTextField( "0", WIDTH );
+      spellNumCounter.setEditable( false );
+    pageNumCounter = new BTextField( "0", WIDTH );
+      pageNumCounter.setEditable( false );
 
-      spellAction.setText( "Remove Spell" );
-      spellAction.setFocusable( false );
-      spellAction.setActionCommand( "removeSpell" );
-    }
-    else // editable = true
-    {
-      spellAction.setText( "Add Spell" );
-      spellAction.setActionCommand( "addSpell" );
-    }
-
-    this.add( spellCode );
-    this.add( spellTitle );
-    this.add( spellSchool );
-    this.add( spellAction );
+    this.add( spellNumLabel, 0, 0 );
+    this.add( spellNumCounter, 1, 0 );
+    this.add( pageNumLabel, 3, 0 );
+    this.add( pageNumCounter, 4, 0 );
   }
 
 }

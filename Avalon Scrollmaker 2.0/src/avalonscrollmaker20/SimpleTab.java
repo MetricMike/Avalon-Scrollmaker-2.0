@@ -32,6 +32,7 @@ import buoy.widget.LayoutInfo;
  */
 public class SimpleTab extends ColumnContainer
 {
+  private SimpleSchoolRow labelRow;
   public SimpleSchoolRow theksoRow;
   public SimpleSchoolRow hetterRow;
   public SimpleSchoolRow chattenRow;
@@ -44,8 +45,9 @@ public class SimpleTab extends ColumnContainer
   {
     super();
 
-    this.setDefaultLayout( new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.VERTICAL ) );
+    this.setDefaultLayout( new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.HORIZONTAL ) );
 
+    labelRow = new SimpleSchoolRow( 0 );
     theksoRow = new SimpleSchoolRow( "Thekso" );
     hetterRow = new SimpleSchoolRow( "Hetter" );
     chattenRow = new SimpleSchoolRow( "Chatten" );
@@ -54,6 +56,7 @@ public class SimpleTab extends ColumnContainer
     ojiinRow = new SimpleSchoolRow( "Ojiin" );
     zunRow = new SimpleSchoolRow( "Zun" );
 
+    this.add( labelRow );
     this.add( theksoRow );
     this.add( hetterRow );
     this.add( chattenRow );

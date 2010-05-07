@@ -35,28 +35,25 @@ import buoy.widget.Shortcut;
  */
 public class MenuBar extends BMenuBar
 {
-  private BMenu actionsMenu;
-    private BMenuItem printItem;
-    private BMenuItem resetItem;
-    private BMenuItem exitItem;
-  private BMenu helpMenu;
-    private BMenuItem dbItem;
-    private BMenuItem aboutItem;
-    private BMenuItem supportItem;
+  public BMenu actionsMenu;
+    public BMenuItem printItem;
+    public BMenuItem resetItem;
+    public BMenuItem exitItem;
+  public BMenu helpMenu;
+    public BMenuItem dbItem;
+    public BMenuItem aboutItem;
+    public BMenuItem supportItem;
 
-  private BMenu modeMenu;
-    private BMenuItem simpleItem;
-    private BMenuItem designerItem;
+  public BMenu modeMenu;
+    public BMenuItem simpleItem;
+    public BMenuItem designerItem;
 
   public MenuBar()
   {
     actionsMenu = new BMenu( "Actions" );
       printItem = new BMenuItem( "Print", new Shortcut( 'P', Shortcut.CTRL_MASK ) );
-        printItem.setActionCommand( "print" );
       resetItem = new BMenuItem( "Reset", new Shortcut( 'R', Shortcut.CTRL_MASK ) );
-        resetItem.setActionCommand( "reset" );
       exitItem = new BMenuItem( "Exit", new Shortcut( 'Q', Shortcut.CTRL_MASK ) );
-        exitItem.setActionCommand( "exit" );
 
     actionsMenu.add( printItem );
     actionsMenu.add( resetItem );
@@ -65,22 +62,17 @@ public class MenuBar extends BMenuBar
 
     helpMenu = new BMenu( "Help" );
       dbItem = new BMenuItem( "Use 050910 Database" );
-        dbItem.setActionCommand( "useDB" );
       aboutItem = new BMenuItem( "About" );
-        aboutItem.setActionCommand( "about" );
       supportItem = new BMenuItem( "Contact Support" );
-        supportItem.setActionCommand( "support" );
     
     helpMenu.add( dbItem );
     helpMenu.add( new BSeparator() );
     helpMenu.add( aboutItem );
     helpMenu.add( supportItem );
     
-    modeMenu = new BMenu( "Menu" );
+    modeMenu = new BMenu( "Modes" );
       simpleItem = new BMenuItem( "Simple" );
-        simpleItem.setActionCommand( "simple" );
       designerItem = new BMenuItem( "Designer" );
-        designerItem.setActionCommand( "designer" );
 
     modeMenu.add( simpleItem );
     modeMenu.add( new BSeparator() );
