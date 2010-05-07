@@ -24,6 +24,8 @@
 
 package avalonscrollmaker20;
 
+import buoy.event.CommandEvent;
+import buoy.event.WindowClosingEvent;
 import buoy.widget.*;
 
 /**
@@ -32,47 +34,88 @@ import buoy.widget.*;
  */
 public class ScrollMaker extends BFrame
 {
-  // MenuBar
-    // Actions Menu
-      // Print Item
-      // Undo Item
-      // Reset Item
-      // Exit Item
-    // Help Menu
-      // Use DB Item
-      // About Item
-      // Support Item
-    // Simple Switch
-    // Design Switch
+  private MenuBar menuBar;
 
-  // Simple Container
-    // Earth Tab
-    // Air Tab
-    // Fire Tab
-    // Water Tab
-    // Nexus Tab
-    // Void Tab
+  private BSplitPane viewerPane;
+  private OverlayContainer contentPane;
 
-  // Design Container
-    // Add Spell
-      // Current Spell Description
-      // Add Spell Button
-    // Remove Spell
-      // Last Spell Description
-      // Remove Spell Button
+    private BTabbedPane simpleContainer;
+      private SimpleTab earthTab;
+      private SimpleTab airTab;
+      private SimpleTab fireTab;
+      private SimpleTab waterTab;
+      private SimpleTab nexusTab;
+      private SimpleTab voidTab;
 
-  // Dashboard Container
-    // Total Spells Number
-    // Total Pages Number
+    private DesignerPane designerContainer;
 
+  private Dashboard dashboardContainer;
+    
   public ScrollMaker()
   {
     super( "Avalon Scrollmaker 2.0" );
 
-    // Make stuff!
+    menuBar = new MenuBar();
+
+    earthTab = new SimpleTab();
+    airTab = new SimpleTab();
+    fireTab = new SimpleTab();
+    waterTab = new SimpleTab();
+    nexusTab = new SimpleTab();
+    voidTab = new SimpleTab();
+
+    simpleContainer = new BTabbedPane( BTabbedPane.TOP );
+      simpleContainer.add( earthTab, " Earth " );
+      simpleContainer.add( airTab, " Air   " );
+      simpleContainer.add( fireTab, " Fire  " );
+      simpleContainer.add( waterTab, " Water " );
+      simpleContainer.add( nexusTab, " Nexus " );
+      simpleContainer.add( voidTab, " Void  " );
+
+    designerContainer = new DesignerPane();
+
+    contentPane = new OverlayContainer();
+      contentPane.add( simpleContainer );
+      contentPane.add( designerContainer );
+      contentPane.setVisibleChild( designerContainer );
+
+    dashboardContainer = new Dashboard();
+
+    viewerPane = new BSplitPane( BSplitPane.VERTICAL, contentPane, dashboardContainer );
+      viewerPane.setResizeWeight( 0.9 );
+
+    this.setMenuBar( menuBar );
+    this.setContent( viewerPane );
+
+    setEventLinks();
 
     pack();
     setVisible( true );
+  }
+
+  private void setEventLinks()
+  {
+    this.addEventLink( WindowClosingEvent.class, this, "doQuit" );
+    
+    //menuBar.printItem.addEventLink( CommandEvent.class, this, "doPrint" );
+    //menuBar.resetItem.addEventLink( CommandEvent.class, this, "doReset" );
+    menuBar.exitItem.addEventLink( CommandEvent.class, this, "doQuit" );
+
+    menuBar.simpleItem.addEventLink( CommandEvent.class, this, "switchMode" );
+    menuBar.designerItem.addEventLink( CommandEvent.class, this, "switchMode" );
+  }
+
+  private void doQuit()
+  {
+    System.exit( 0 );
+  }
+
+  private void switchMode( CommandEvent ev )
+  {
+    if( ev.getWidget() == menuBar.simpleItem )
+      contentPane.setVisibleChild( simpleContainer );
+    else if( ev.getWidget() == menuBar.designerItem )
+      contentPane.setVisibleChild( designerContainer );
   }
 
 }
