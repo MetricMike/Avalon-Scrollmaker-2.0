@@ -27,6 +27,7 @@ package avalonscrollmaker20;
 import buoy.event.CommandEvent;
 import buoy.event.WindowClosingEvent;
 import buoy.widget.*;
+import java.awt.Rectangle;
 
 /**
  * @desc   Displays the GUI
@@ -77,7 +78,7 @@ public class ScrollMaker extends BFrame
     contentPane = new OverlayContainer();
       contentPane.add( simpleContainer );
       contentPane.add( designerContainer );
-      contentPane.setVisibleChild( designerContainer );
+      contentPane.setVisibleChild( simpleContainer );
 
     dashboardContainer = new Dashboard();
 
@@ -91,6 +92,8 @@ public class ScrollMaker extends BFrame
 
     pack();
     setVisible( true );
+
+    this.setBounds( new Rectangle( 100, 75, 400, 450 ) );
   }
 
   private void setEventLinks()

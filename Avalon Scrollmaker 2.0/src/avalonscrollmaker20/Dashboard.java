@@ -26,14 +26,14 @@ package avalonscrollmaker20;
 import buoy.widget.BLabel;
 import buoy.widget.BSeparator;
 import buoy.widget.BTextField;
-import buoy.widget.GridContainer;
+import buoy.widget.RowContainer;
 import java.awt.Dimension;
 
 /**
  * @desc   Contains counters for spell and page #s.
  * @author Michael Weigle <michael.weigle@gmail.com>
  */
-public class Dashboard extends GridContainer
+public class Dashboard extends RowContainer
 {
   private BLabel spellNumLabel;
   private BTextField spellNumCounter;
@@ -45,7 +45,10 @@ public class Dashboard extends GridContainer
 
   public Dashboard()
   {
-    super( 5, 1 );
+    super();
+
+    BLabel buffer1 = new BLabel( " " );
+    BLabel buffer2 = new BLabel( " " );
 
     spellNumLabel = new BLabel( "Total Number of Spells:" );
       spellNumLabel.setAlignment( BLabel.CENTER );
@@ -57,10 +60,12 @@ public class Dashboard extends GridContainer
     pageNumCounter = new BTextField( "0", WIDTH );
       pageNumCounter.setEditable( false );
 
-    this.add( spellNumLabel, 0, 0 );
-    this.add( spellNumCounter, 1, 0 );
-    this.add( pageNumLabel, 3, 0 );
-    this.add( pageNumCounter, 4, 0 );
+    this.add( buffer1 );
+    this.add( spellNumLabel );
+    this.add( spellNumCounter );
+    this.add( buffer2 );
+    this.add( pageNumLabel );
+    this.add( pageNumCounter );
   }
 
 }
