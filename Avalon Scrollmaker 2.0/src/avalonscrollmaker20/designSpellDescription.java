@@ -29,7 +29,7 @@ import buoy.widget.ColumnContainer;
 import buoy.widget.LayoutInfo;
 
 /**
- * @desc   
+ * @desc   Object containing GUI elements to remove/add spells in Designer mode
  * @author Michael Weigle <michael.weigle@gmail.com>
  */
 public class designSpellDescription extends ColumnContainer
