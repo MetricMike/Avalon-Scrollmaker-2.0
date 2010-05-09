@@ -36,6 +36,7 @@ import buoy.widget.Shortcut;
 public class MenuBar extends BMenuBar
 {
   public BMenu actionsMenu;
+    public BMenuItem calcItem;
     public BMenuItem printItem;
     public BMenuItem resetItem;
     public BMenuItem exitItem;
@@ -51,10 +52,12 @@ public class MenuBar extends BMenuBar
   public MenuBar()
   {
     actionsMenu = new BMenu( "Actions" );
+      calcItem = new BMenuItem( "Calculate", new Shortcut( 'K', Shortcut.CTRL_MASK ) );
       printItem = new BMenuItem( "Print", new Shortcut( 'P', Shortcut.CTRL_MASK ) );
       resetItem = new BMenuItem( "Reset", new Shortcut( 'R', Shortcut.CTRL_MASK ) );
       exitItem = new BMenuItem( "Exit", new Shortcut( 'Q', Shortcut.CTRL_MASK ) );
 
+    actionsMenu.add( calcItem );
     actionsMenu.add( printItem );
     actionsMenu.add( resetItem );
     actionsMenu.add( new BSeparator() );

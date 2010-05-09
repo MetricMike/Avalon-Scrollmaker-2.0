@@ -66,4 +66,30 @@ public class SimpleTab extends ColumnContainer
     this.add( zunRow );
   }
 
+  public void reset()
+  {
+    theksoRow.reset();
+    hetterRow.reset();
+    chattenRow.reset();
+    xietepRow.reset();
+    tasolRow.reset();
+    ojiinRow.reset();
+    zunRow.reset();
+  }
+
+  public int calculate()
+  {
+    int numSpells = 0;
+
+    numSpells += theksoRow.calculate();
+    numSpells += hetterRow.calculate();
+    numSpells += chattenRow.calculate();
+    numSpells += xietepRow.calculate();
+    numSpells += tasolRow.calculate();
+    numSpells += ojiinRow.calculate();
+    numSpells += zunRow.calculate();
+
+    return numSpells;
+  }
+
 }

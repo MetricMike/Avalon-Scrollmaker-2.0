@@ -68,4 +68,46 @@ public class SimpleSchoolRow extends GridContainer
     this.add( new BLabel( "Breaths" ), 2, 0, new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, padder, null ) );
   }
 
+  public void reset()
+  {
+    spellInput.setText( null );
+    breathInput.setText( null );
+  }
+
+  public int calculate()
+  {
+    int numSpells = 0;
+    int numBreaths = 0;
+    int totalNum = 0;
+    boolean validSpells = false;
+    boolean validBreaths = false;
+
+    try
+    {
+      numSpells = Integer.parseInt( spellInput.getText() );
+      validSpells = true;
+    }
+    catch( NumberFormatException ex )
+    {
+      validSpells = false;
+    }
+
+    try
+    {
+      numBreaths = Integer.parseInt( breathInput.getText() );
+      validBreaths = true;
+    }
+    catch( NumberFormatException ex )
+    {
+      validBreaths = false;
+    }
+
+    if( validSpells )
+      totalNum += numSpells;
+    if( validBreaths )
+      totalNum += numBreaths;
+
+    return totalNum;
+  }
+
 }

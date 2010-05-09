@@ -99,18 +99,44 @@ public class ScrollMaker extends BFrame
   private void setEventLinks()
   {
     this.addEventLink( WindowClosingEvent.class, this, "doQuit" );
-    
+
+    menuBar.calcItem.addEventLink( CommandEvent.class, this, "simpleCalculate" );
     //menuBar.printItem.addEventLink( CommandEvent.class, this, "doPrint" );
-    //menuBar.resetItem.addEventLink( CommandEvent.class, this, "doReset" );
+    menuBar.resetItem.addEventLink( CommandEvent.class, this, "doReset" );
     menuBar.exitItem.addEventLink( CommandEvent.class, this, "doQuit" );
 
     menuBar.simpleItem.addEventLink( CommandEvent.class, this, "switchMode" );
     menuBar.designerItem.addEventLink( CommandEvent.class, this, "switchMode" );
   }
 
-  private void doQuit()
+  private void doReset()
   {
-    System.exit( 0 );
+    earthTab.reset();
+    airTab.reset();
+    fireTab.reset();
+    waterTab.reset();
+    nexusTab.reset();
+    voidTab.reset();
+  }
+
+  private void simpleCalculate()
+  {
+    int numSpells = 0;
+    
+    numSpells += earthTab.calculate();
+    numSpells += airTab.calculate();
+    numSpells += fireTab.calculate();
+    numSpells += waterTab.calculate();
+    numSpells += nexusTab.calculate();
+    numSpells += voidTab.calculate();
+
+    dashboardContainer.spellNumCounter.setText( String.valueOf( numSpells ) );
+    dashboardContainer.pageNumCounter.setText( String.valueOf( numSpells / 8 ) );
+  }
+
+  private void designCalculate()
+  {
+    //moar nothing
   }
 
   private void switchMode( CommandEvent ev )
@@ -119,6 +145,11 @@ public class ScrollMaker extends BFrame
       contentPane.setVisibleChild( simpleContainer );
     else if( ev.getWidget() == menuBar.designerItem )
       contentPane.setVisibleChild( designerContainer );
+  }
+
+  private void doQuit()
+  {
+    System.exit( 0 );
   }
 
 }

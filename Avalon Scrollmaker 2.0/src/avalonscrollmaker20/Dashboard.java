@@ -36,10 +36,10 @@ import java.awt.Dimension;
 public class Dashboard extends RowContainer
 {
   private BLabel spellNumLabel;
-  private BTextField spellNumCounter;
+  public BTextField spellNumCounter;
 
   private BLabel pageNumLabel;
-  private BTextField pageNumCounter;
+  public BTextField pageNumCounter;
 
   private static final int WIDTH = 3;
 
