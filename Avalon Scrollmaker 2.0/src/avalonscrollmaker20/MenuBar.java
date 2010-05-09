@@ -23,6 +23,7 @@
  */
 package avalonscrollmaker20;
 
+import buoy.event.CommandEvent;
 import buoy.widget.BMenuBar;
 import buoy.widget.BMenu;
 import buoy.widget.BMenuItem;
@@ -64,7 +65,8 @@ public class MenuBar extends BMenuBar
     actionsMenu.add( exitItem );
 
     helpMenu = new BMenu( "Help" );
-      dbItem = new BMenuItem( "Use 050910 Database" );
+      dbItem = new BMenuItem( "Use Internal Database" );
+        dbItem.setEnabled( false );
       aboutItem = new BMenuItem( "About" );
       supportItem = new BMenuItem( "Contact Support" );
     

@@ -21,13 +21,13 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package avalonscrollmaker20;
 
 import buoy.event.CommandEvent;
 import buoy.event.WindowClosingEvent;
 import buoy.widget.*;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 /**
  * @desc   Displays the GUI
@@ -51,6 +51,11 @@ public class ScrollMaker extends BFrame
     private DesignerPane designerContainer;
 
   private Dashboard dashboardContainer;
+
+  private ArrayList<AnothakScroll> designList = new ArrayList<AnothakScroll>();
+  private ArrayList<AnothakScroll> simpleList = new ArrayList<AnothakScroll>();
+  private AnothakScroll currentSpell = null;
+  private AnothakScroll lastSpell = null;
     
   public ScrollMaker()
   {
@@ -78,7 +83,7 @@ public class ScrollMaker extends BFrame
     contentPane = new OverlayContainer();
       contentPane.add( simpleContainer );
       contentPane.add( designerContainer );
-      contentPane.setVisibleChild( simpleContainer );
+      contentPane.setVisibleChild( designerContainer );
 
     dashboardContainer = new Dashboard();
 
@@ -100,13 +105,16 @@ public class ScrollMaker extends BFrame
   {
     this.addEventLink( WindowClosingEvent.class, this, "doQuit" );
 
-    menuBar.calcItem.addEventLink( CommandEvent.class, this, "simpleCalculate" );
+    menuBar.calcItem.addEventLink( CommandEvent.class, this, "doCalculate" );
     //menuBar.printItem.addEventLink( CommandEvent.class, this, "doPrint" );
     menuBar.resetItem.addEventLink( CommandEvent.class, this, "doReset" );
     menuBar.exitItem.addEventLink( CommandEvent.class, this, "doQuit" );
 
     menuBar.simpleItem.addEventLink( CommandEvent.class, this, "switchMode" );
     menuBar.designerItem.addEventLink( CommandEvent.class, this, "switchMode" );
+
+    designerContainer.spellAdd.addEventLink( CommandEvent.class, this, "designAdd" );
+    designerContainer.spellRem.addEventLink( CommandEvent.class, this, "designRem" );
   }
 
   private void doReset()
@@ -117,26 +125,73 @@ public class ScrollMaker extends BFrame
     waterTab.reset();
     nexusTab.reset();
     voidTab.reset();
+
+    dashboardContainer.reset();
+    designerContainer.reset();
+
+    designList.clear();
+    simpleList.clear();
   }
 
-  private void simpleCalculate()
+  private void doCalculate()
   {
-    int numSpells = 0;
+    if( simpleContainer.isVisible() )
+    {
+      int numSpells = 0;
     
-    numSpells += earthTab.calculate();
-    numSpells += airTab.calculate();
-    numSpells += fireTab.calculate();
-    numSpells += waterTab.calculate();
-    numSpells += nexusTab.calculate();
-    numSpells += voidTab.calculate();
+      numSpells += earthTab.calculate();
+      numSpells += airTab.calculate();
+      numSpells += fireTab.calculate();
+      numSpells += waterTab.calculate();
+      numSpells += nexusTab.calculate();
+      numSpells += voidTab.calculate();
 
-    dashboardContainer.spellNumCounter.setText( String.valueOf( numSpells ) );
-    dashboardContainer.pageNumCounter.setText( String.valueOf( numSpells / 8 ) );
+      dashboardContainer.spellNumCounter.setText( String.valueOf( numSpells ) );
+      dashboardContainer.pageNumCounter.setText( String.valueOf( numSpells / 8 ) );
+    }
+    else // designerContainer.isVisible()
+    {
+      dashboardContainer.spellNumCounter.setText( "" + designList.size() );
+      dashboardContainer.pageNumCounter.setText( "" + designList.size() / 8 );
+    }
   }
 
-  private void designCalculate()
+  private void designAdd()
   {
-    //moar nothing
+    currentSpell = new AnothakScroll( designerContainer.spellCodeEdit.getText(),
+                                       designerContainer.spellTitleEdit.getText(),
+                                       designerContainer.spellSchoolEdit.getText() );
+
+    designerContainer.spellCodeRead.setText( designerContainer.spellCodeEdit.getText() );
+    designerContainer.spellTitleRead.setText( designerContainer.spellTitleEdit.getText() );
+    designerContainer.spellSchoolRead.setText( designerContainer.spellSchoolEdit.getText() );
+
+    designerContainer.spellCodeEdit.setText( "" );
+    designerContainer.spellTitleEdit.setText( "" );
+    designerContainer.spellSchoolEdit.setText( "" );
+
+    designList.add( currentSpell );
+    lastSpell = currentSpell;
+
+    doCalculate();
+  }
+
+  private void designRem()
+  {
+    designList.remove( lastSpell );
+
+    designerContainer.spellCodeEdit.setText( designerContainer.spellCodeRead.getText() );
+    designerContainer.spellTitleEdit.setText( designerContainer.spellTitleRead.getText() );
+    designerContainer.spellSchoolEdit.setText( designerContainer.spellSchoolRead.getText() );
+
+    designerContainer.spellCodeRead.setText( "" );
+    designerContainer.spellTitleEdit.setText( "" );
+    designerContainer.spellSchoolEdit.setText( "" );
+
+    designList.remove( lastSpell );
+    lastSpell = null;
+    
+    doCalculate();
   }
 
   private void switchMode( CommandEvent ev )
@@ -145,6 +200,8 @@ public class ScrollMaker extends BFrame
       contentPane.setVisibleChild( simpleContainer );
     else if( ev.getWidget() == menuBar.designerItem )
       contentPane.setVisibleChild( designerContainer );
+
+    doCalculate();
   }
 
   private void doQuit()
@@ -152,4 +209,8 @@ public class ScrollMaker extends BFrame
     System.exit( 0 );
   }
 
+  public static void main( String[] args )
+  {
+    new ScrollMaker();
+  }
 }

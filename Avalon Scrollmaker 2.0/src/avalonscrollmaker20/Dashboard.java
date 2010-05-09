@@ -24,10 +24,8 @@
 package avalonscrollmaker20;
 
 import buoy.widget.BLabel;
-import buoy.widget.BSeparator;
 import buoy.widget.BTextField;
 import buoy.widget.RowContainer;
-import java.awt.Dimension;
 
 /**
  * @desc   Contains counters for spell and page #s.
@@ -66,6 +64,12 @@ public class Dashboard extends RowContainer
     this.add( buffer2 );
     this.add( pageNumLabel );
     this.add( pageNumCounter );
+  }
+
+  public void reset()
+  {
+    spellNumCounter.setText( "0" );
+    pageNumCounter.setText( "0" );
   }
 
 }
