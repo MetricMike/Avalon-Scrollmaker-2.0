@@ -263,18 +263,18 @@ public class AnothakScroll
 
   }
 
-  private ArrayList<Symbol> liersethPhrase_Symbol;
-  private ArrayList<Word> liersethPhrase_Common;
-  private String spellTitle;
-  private String spellCode;
-  private Keu sourceKeu;
-  private Keu destinationKeu;
-  private Circle spellCircle;
-  private Element spellElement;
-  private OldSchool spellOldSchool;
-  private NewSchool spellNewSchool;
-  private Image backgroundImageFull;
-  private Image backgroundImageLite;
+  public ArrayList<Symbol> liersethPhrase_Symbol;
+  public ArrayList<Word> liersethPhrase_Common;
+  public String spellTitle;
+  public String spellCode;
+  public Keu sourceKeu;
+  public Keu destinationKeu;
+  public Circle spellCircle;
+  public Element spellElement;
+  public OldSchool spellOldSchool;
+  public NewSchool spellNewSchool;
+  public Image backgroundImageFull;
+  public Image backgroundImageLite;
   private int elementChar = 0;
   private int schoolChar = 1;
 
@@ -556,126 +556,6 @@ public class AnothakScroll
 
       }
     }
-  }
-
-  public Image getBackgroundImageFull()
-  {
-    return backgroundImageFull;
-  }
-
-  public void setBackgroundImageFull( Image backgroundImageFull )
-  {
-    this.backgroundImageFull = backgroundImageFull;
-  }
-
-  public Image getBackgroundImageLite()
-  {
-    return backgroundImageLite;
-  }
-
-  public void setBackgroundImageLite( Image backgroundImageLite )
-  {
-    this.backgroundImageLite = backgroundImageLite;
-  }
-
-  public Keu getDestinationKeu()
-  {
-    return destinationKeu;
-  }
-
-  public void setDestinationKeu( Keu destinationKeu )
-  {
-    this.destinationKeu = destinationKeu;
-  }
-
-  public ArrayList<Word> getLiersethPhrase_Common()
-  {
-    return liersethPhrase_Common;
-  }
-
-  public void setLiersethPhrase_Common( ArrayList<Word> liersethPhrase_Common )
-  {
-    this.liersethPhrase_Common = liersethPhrase_Common;
-  }
-
-  public ArrayList<Symbol> getLiersethPhrase_Symbol()
-  {
-    return liersethPhrase_Symbol;
-  }
-
-  public void setLiersethPhrase_Symbol( ArrayList<Symbol> liersethPhrase_Symbol )
-  {
-    this.liersethPhrase_Symbol = liersethPhrase_Symbol;
-  }
-
-  public Keu getSourceKeu()
-  {
-    return sourceKeu;
-  }
-
-  public void setSourceKeu( Keu sourceKeu )
-  {
-    this.sourceKeu = sourceKeu;
-  }
-
-  public Circle getSpellCircle()
-  {
-    return spellCircle;
-  }
-
-  public void setSpellCircle( Circle spellCircle )
-  {
-    this.spellCircle = spellCircle;
-  }
-
-  public String getSpellCode()
-  {
-    return spellCode;
-  }
-
-  public void setSpellCode( String spellCode )
-  {
-    this.spellCode = spellCode;
-  }
-
-  public Element getSpellElement()
-  {
-    return spellElement;
-  }
-
-  public void setSpellElement( Element spellElement )
-  {
-    this.spellElement = spellElement;
-  }
-
-  public NewSchool getSpellNewSchool()
-  {
-    return spellNewSchool;
-  }
-
-  public void setSpellNewSchool( NewSchool spellNewSchool )
-  {
-    this.spellNewSchool = spellNewSchool;
-  }
-
-  public OldSchool getSpellOldSchool()
-  {
-    return spellOldSchool;
-  }
-
-  public void setSpellOldSchool( OldSchool spellOldSchool )
-  {
-    this.spellOldSchool = spellOldSchool;
-  }
-
-  public String getSpellTitle()
-  {
-    return spellTitle;
-  }
-
-  public void setSpellTitle( String spellTitle )
-  {
-    this.spellTitle = spellTitle;
   }
 
 }

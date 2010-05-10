@@ -178,15 +178,13 @@ public class ScrollMaker extends BFrame
 
   private void designRem()
   {
-    designList.remove( lastSpell );
-
     designerContainer.spellCodeEdit.setText( designerContainer.spellCodeRead.getText() );
     designerContainer.spellTitleEdit.setText( designerContainer.spellTitleRead.getText() );
     designerContainer.spellSchoolEdit.setText( designerContainer.spellSchoolRead.getText() );
 
     designerContainer.spellCodeRead.setText( "" );
-    designerContainer.spellTitleEdit.setText( "" );
-    designerContainer.spellSchoolEdit.setText( "" );
+    designerContainer.spellTitleRead.setText( "" );
+    designerContainer.spellSchoolRead.setText( "" );
 
     designList.remove( lastSpell );
     lastSpell = null;

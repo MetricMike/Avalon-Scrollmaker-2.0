@@ -30,7 +30,6 @@ import buoy.widget.BTextField;
 import buoy.widget.BTextArea;
 import buoy.widget.FormContainer;
 import buoy.widget.LayoutInfo;
-import java.awt.Color;
 import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -88,17 +87,20 @@ public class DesignerPane extends FormContainer
     spellCodeRead = new BTextField( WIDTH );
       spellCodeRead.getComponent().setHorizontalAlignment( JTextField.CENTER );
       spellCodeRead.setEditable( false );
+      spellCodeRead.setFocusable( false );
     spellTitleEdit = new BTextArea( 2, WIDTH );
       spellTitleEdit.setWrapStyle( BTextArea.WRAP_WORD );
     spellTitleRead = new BTextArea( 2, WIDTH );
       spellTitleRead.setWrapStyle( BTextArea.WRAP_WORD );
       spellTitleRead.setEditable( false );
       spellTitleRead.setBackground( spellCodeRead.getBackground() );
+      spellTitleRead.setFocusable( false );
     spellSchoolEdit = new BTextField( WIDTH );
       spellSchoolEdit.getComponent().setHorizontalAlignment( JTextField.CENTER );
     spellSchoolRead = new BTextField( WIDTH );
       spellSchoolRead.getComponent().setHorizontalAlignment( JTextField.CENTER );
       spellSchoolRead.setEditable( false );
+      spellSchoolRead.setFocusable( false );
 
     spellAdd = new BButton( "Add Spell" );
     spellRem = new BButton( "Remove Spell" );
