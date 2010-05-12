@@ -38,53 +38,45 @@ public class MenuBar extends BMenuBar
 {
   public BMenu actionsMenu;
     public BMenuItem calcItem;
+    public BMenuItem dbItem;
     public BMenuItem printItem;
     public BMenuItem resetItem;
     public BMenuItem exitItem;
-  public BMenu helpMenu;
-    public BMenuItem dbItem;
-    public BMenuItem aboutItem;
-    public BMenuItem supportItem;
 
   public BMenu modeMenu;
     public BMenuItem simpleItem;
     public BMenuItem designerItem;
+    public BMenuItem helpItem;
 
   public MenuBar()
   {
     actionsMenu = new BMenu( "Actions" );
       calcItem = new BMenuItem( "Calculate", new Shortcut( 'K', Shortcut.CTRL_MASK ) );
+      dbItem = new BMenuItem( "Use Internal Database" );
+        dbItem.setEnabled( false );
       printItem = new BMenuItem( "Print", new Shortcut( 'P', Shortcut.CTRL_MASK ) );
       resetItem = new BMenuItem( "Reset", new Shortcut( 'R', Shortcut.CTRL_MASK ) );
       exitItem = new BMenuItem( "Exit", new Shortcut( 'Q', Shortcut.CTRL_MASK ) );
 
     actionsMenu.add( calcItem );
+    actionsMenu.add( dbItem );
     actionsMenu.add( printItem );
-    actionsMenu.add( resetItem );
     actionsMenu.add( new BSeparator() );
+    actionsMenu.add( resetItem );
     actionsMenu.add( exitItem );
-
-    helpMenu = new BMenu( "Help" );
-      dbItem = new BMenuItem( "Use Internal Database" );
-        dbItem.setEnabled( false );
-      aboutItem = new BMenuItem( "About" );
-      supportItem = new BMenuItem( "Contact Support" );
-    
-    helpMenu.add( dbItem );
-    helpMenu.add( new BSeparator() );
-    helpMenu.add( aboutItem );
-    helpMenu.add( supportItem );
     
     modeMenu = new BMenu( "Modes" );
       simpleItem = new BMenuItem( "Simple" );
       designerItem = new BMenuItem( "Designer" );
+      helpItem = new BMenuItem( "Help" );
 
     modeMenu.add( simpleItem );
     modeMenu.add( new BSeparator() );
     modeMenu.add( designerItem );
+    modeMenu.add( new BSeparator() );
+    modeMenu.add( helpItem );
 
     this.add( actionsMenu );
-    this.add( helpMenu );
     this.add( modeMenu );
   }
 }

@@ -50,6 +50,8 @@ public class ScrollMaker extends BFrame
 
     private DesignerPane designerContainer;
 
+    private HelperPane helpContainer;
+
   private Dashboard dashboardContainer;
 
   private ArrayList<AnothakScroll> designList = new ArrayList<AnothakScroll>();
@@ -80,10 +82,13 @@ public class ScrollMaker extends BFrame
 
     designerContainer = new DesignerPane();
 
+    helpContainer = new HelperPane();
+
     contentPane = new OverlayContainer();
       contentPane.add( simpleContainer );
       contentPane.add( designerContainer );
-      contentPane.setVisibleChild( designerContainer );
+      contentPane.add( helpContainer );
+      contentPane.setVisibleChild( helpContainer );
 
     dashboardContainer = new Dashboard();
 
@@ -106,15 +111,24 @@ public class ScrollMaker extends BFrame
     this.addEventLink( WindowClosingEvent.class, this, "doQuit" );
 
     menuBar.calcItem.addEventLink( CommandEvent.class, this, "doCalculate" );
+    //menuBar.dbItem.addEventLink( CommandEvent.class, this, "loadDB" );
     //menuBar.printItem.addEventLink( CommandEvent.class, this, "doPrint" );
     menuBar.resetItem.addEventLink( CommandEvent.class, this, "doReset" );
     menuBar.exitItem.addEventLink( CommandEvent.class, this, "doQuit" );
 
     menuBar.simpleItem.addEventLink( CommandEvent.class, this, "switchMode" );
     menuBar.designerItem.addEventLink( CommandEvent.class, this, "switchMode" );
+    menuBar.helpItem.addEventLink( CommandEvent.class, this, "switchMode" );
 
     designerContainer.spellAdd.addEventLink( CommandEvent.class, this, "designAdd" );
     designerContainer.spellRem.addEventLink( CommandEvent.class, this, "designRem" );
+
+    helpContainer.emailSupportButton.addEventLink( CommandEvent.class, this, "doMail" );
+  }
+
+  private void doMail()
+  {
+    helpContainer.mailto();
   }
 
   private void doReset()
@@ -198,6 +212,8 @@ public class ScrollMaker extends BFrame
       contentPane.setVisibleChild( simpleContainer );
     else if( ev.getWidget() == menuBar.designerItem )
       contentPane.setVisibleChild( designerContainer );
+    else if( ev.getWidget() == menuBar.helpItem )
+      contentPane.setVisibleChild( helpContainer );
 
     doCalculate();
   }
