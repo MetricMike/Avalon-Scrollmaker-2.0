@@ -190,6 +190,9 @@ public class ScrollMaker extends BFrame
 
   private void designAdd()
   {
+    if( designerContainer.spellCodeEdit.getText().trim().equals( "" ) )
+      return;
+
     currentSpell = new AnothakScroll( designerContainer.spellCodeEdit.getText().trim(),
                                        designerContainer.spellTitleEdit.getText().trim(),
                                        designerContainer.spellSchoolEdit.getSelectedValue().toString() );
@@ -210,6 +213,9 @@ public class ScrollMaker extends BFrame
 
   private void designRem()
   {
+    if( designerContainer.spellCodeEdit.getText().equals( "" ) )
+      return;
+
     designerContainer.spellCodeEdit.setText( designerContainer.spellCodeRead.getText() );
     designerContainer.spellTitleEdit.setText( designerContainer.spellTitleRead.getText() );
     designerContainer.spellSchoolEdit.setSelectedValue( AnothakScroll.NewSchool.getValue( designerContainer.spellSchoolRead.getText() ) );
