@@ -274,7 +274,6 @@ public class AnothakScroll
   public OldSchool spellOldSchool;
   public NewSchool spellNewSchool;
   public Image backgroundImageFull;
-  public Image backgroundImageLite;
   private int elementChar = 0;
   private int schoolChar = 1;
 
@@ -283,9 +282,9 @@ public class AnothakScroll
     this( "", "", "" );
   }
 
-  public AnothakScroll( String element, String tagSchool )
+  public AnothakScroll( String fakeTag, NewSchool tagSchool )
   {
-    this( element.charAt( 0 ) + "101", "", tagSchool );
+    this( fakeTag, "", tagSchool.toString() );
   }
 
   public AnothakScroll( String tagNumber, String tagTitle, String tagSchool )
@@ -407,8 +406,8 @@ public class AnothakScroll
     // Check if spell is Pure
     if ( spellCode.charAt( 0 ) == 'p' )
     {
-      elementChar = elementChar++;
-      schoolChar = schoolChar++;
+      this.elementChar = 1;
+      this.schoolChar = 2;
     }
 
     // Inspect elementChar of spellCode, assign spellElement, elemental Word/Symbol, and
@@ -524,7 +523,6 @@ public class AnothakScroll
     if ( sourceKeu == sourceKeu.UNDEFINED | destinationKeu == destinationKeu.UNDEFINED )
     {
       backgroundImageFull = null;
-      backgroundImageLite = null;
       System.err.println( "Keus not found!" + "\nSourceKeu = " + sourceKeu.toString().toLowerCase()
                           + "\nDestinationKeu = " + destinationKeu.toString().toLowerCase() );
     }
@@ -538,16 +536,9 @@ public class AnothakScroll
         String imageFullURL = this.getClass().getResource( resourceLocation
                                                            + ".png" ).toString().toLowerCase();
 
-        String imageLiteURL = this.getClass().getResource( resourceLocation
-                                                           + "lite.png" ).toString().toLowerCase();
-
         backgroundImageFull = Image.getInstance( imageFullURL );
         backgroundImageFull.setAlignment( Image.MIDDLE | Image.UNDERLYING );
         backgroundImageFull.scaleAbsolute( 594, 378 );
-
-        backgroundImageLite = Image.getInstance( imageLiteURL );
-        backgroundImageLite.setAlignment( Image.MIDDLE | Image.UNDERLYING );
-        backgroundImageLite.scaleAbsolute( 594, 378 );
       }
       catch ( Exception ex )
       {
@@ -558,4 +549,11 @@ public class AnothakScroll
     }
   }
 
+  public boolean isPure()
+  {
+    if( elementChar == 0 )
+      return false;
+
+    return true;
+  }
 }

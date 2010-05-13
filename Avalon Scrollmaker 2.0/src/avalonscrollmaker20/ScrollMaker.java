@@ -23,6 +23,7 @@
  */
 package avalonscrollmaker20;
 
+import avalonscrollmaker20.AnothakScroll.Element;
 import buoy.event.CommandEvent;
 import buoy.event.WindowClosingEvent;
 import buoy.widget.*;
@@ -88,7 +89,7 @@ public class ScrollMaker extends BFrame
       contentPane.add( simpleContainer );
       contentPane.add( designerContainer );
       contentPane.add( helpContainer );
-      contentPane.setVisibleChild( helpContainer );
+      contentPane.setVisibleChild( simpleContainer );
 
     dashboardContainer = new Dashboard();
 
@@ -102,6 +103,7 @@ public class ScrollMaker extends BFrame
 
     pack();
     setVisible( true );
+    this.requestFocus();
 
     this.setBounds( new Rectangle( 100, 75, 400, 450 ) );
   }
@@ -112,7 +114,7 @@ public class ScrollMaker extends BFrame
 
     menuBar.calcItem.addEventLink( CommandEvent.class, this, "doCalculate" );
     //menuBar.dbItem.addEventLink( CommandEvent.class, this, "loadDB" );
-    //menuBar.printItem.addEventLink( CommandEvent.class, this, "doPrint" );
+    menuBar.printItem.addEventLink( CommandEvent.class, this, "doPrint" );
     menuBar.resetItem.addEventLink( CommandEvent.class, this, "doReset" );
     menuBar.exitItem.addEventLink( CommandEvent.class, this, "doQuit" );
 
@@ -124,6 +126,22 @@ public class ScrollMaker extends BFrame
     designerContainer.spellRem.addEventLink( CommandEvent.class, this, "designRem" );
 
     helpContainer.emailSupportButton.addEventLink( CommandEvent.class, this, "doMail" );
+  }
+
+  private void doPrint()
+  {
+    doCalculate();
+
+    AnothakScribe urgostienScholar = new AnothakScribe();
+    boolean simpleMode = contentPane.getChild( contentPane.getChildIndex( simpleContainer ) ).isVisible();
+
+    if( simpleMode )
+    {
+      buildSimpleList();
+      urgostienScholar.writeToDoc( simpleList, simpleMode );
+    }
+    else // designMode
+      urgostienScholar.writeToDoc( designList, simpleMode );
   }
 
   private void doMail()
@@ -172,17 +190,17 @@ public class ScrollMaker extends BFrame
 
   private void designAdd()
   {
-    currentSpell = new AnothakScroll( designerContainer.spellCodeEdit.getText(),
-                                       designerContainer.spellTitleEdit.getText(),
-                                       designerContainer.spellSchoolEdit.getText() );
+    currentSpell = new AnothakScroll( designerContainer.spellCodeEdit.getText().trim(),
+                                       designerContainer.spellTitleEdit.getText().trim(),
+                                       designerContainer.spellSchoolEdit.getSelectedValue().toString() );
 
-    designerContainer.spellCodeRead.setText( designerContainer.spellCodeEdit.getText() );
-    designerContainer.spellTitleRead.setText( designerContainer.spellTitleEdit.getText() );
-    designerContainer.spellSchoolRead.setText( designerContainer.spellSchoolEdit.getText() );
+    designerContainer.spellCodeRead.setText( designerContainer.spellCodeEdit.getText().trim() );
+    designerContainer.spellTitleRead.setText( designerContainer.spellTitleEdit.getText().trim() );
+    designerContainer.spellSchoolRead.setText( designerContainer.spellSchoolEdit.getSelectedValue().toString() );
 
     designerContainer.spellCodeEdit.setText( "" );
     designerContainer.spellTitleEdit.setText( "" );
-    designerContainer.spellSchoolEdit.setText( "" );
+    designerContainer.spellSchoolEdit.setSelectedValue( AnothakScroll.NewSchool.UNDEFINED );
 
     designList.add( currentSpell );
     lastSpell = currentSpell;
@@ -194,15 +212,25 @@ public class ScrollMaker extends BFrame
   {
     designerContainer.spellCodeEdit.setText( designerContainer.spellCodeRead.getText() );
     designerContainer.spellTitleEdit.setText( designerContainer.spellTitleRead.getText() );
-    designerContainer.spellSchoolEdit.setText( designerContainer.spellSchoolRead.getText() );
-
-    designerContainer.spellCodeRead.setText( "" );
-    designerContainer.spellTitleRead.setText( "" );
-    designerContainer.spellSchoolRead.setText( "" );
+    designerContainer.spellSchoolEdit.setSelectedValue( AnothakScroll.NewSchool.getValue( designerContainer.spellSchoolRead.getText() ) );
 
     designList.remove( lastSpell );
-    lastSpell = null;
-    
+
+    if( designList.size() > 0 )
+    {
+      lastSpell = designList.get( designList.size() - 1 );
+      designerContainer.spellCodeRead.setText( lastSpell.spellCode );
+      designerContainer.spellTitleRead.setText( lastSpell.spellTitle );
+      designerContainer.spellSchoolRead.setText( lastSpell.spellNewSchool.toString() );
+    }
+    else // designList.size() <= 0
+    {
+      lastSpell = null;
+      designerContainer.spellCodeRead.setText( "" );
+      designerContainer.spellTitleRead.setText( "" );
+      designerContainer.spellSchoolRead.setText( "" );
+    }
+
     doCalculate();
   }
 
@@ -227,4 +255,15 @@ public class ScrollMaker extends BFrame
   {
     new ScrollMaker();
   }
+
+  private void buildSimpleList()
+  {
+    earthTab.buildSimpleList( simpleList, Element.EARTH );
+    airTab.buildSimpleList( simpleList, Element.AIR );
+    fireTab.buildSimpleList( simpleList, Element.FIRE );
+    waterTab.buildSimpleList( simpleList, Element.WATER );
+    nexusTab.buildSimpleList( simpleList, Element.NEXUS );
+    voidTab.buildSimpleList( simpleList, Element.VOID );
+  }
+
 }

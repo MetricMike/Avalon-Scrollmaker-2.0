@@ -23,7 +23,6 @@
  */
 package avalonscrollmaker20;
 
-import buoy.event.CommandEvent;
 import buoy.widget.BMenuBar;
 import buoy.widget.BMenu;
 import buoy.widget.BMenuItem;
@@ -38,7 +37,7 @@ public class MenuBar extends BMenuBar
 {
   public BMenu actionsMenu;
     public BMenuItem calcItem;
-    public BMenuItem dbItem;
+    //public BMenuItem dbItem;
     public BMenuItem printItem;
     public BMenuItem resetItem;
     public BMenuItem exitItem;
@@ -52,14 +51,14 @@ public class MenuBar extends BMenuBar
   {
     actionsMenu = new BMenu( "Actions" );
       calcItem = new BMenuItem( "Calculate", new Shortcut( 'K', Shortcut.CTRL_MASK ) );
-      dbItem = new BMenuItem( "Use Internal Database" );
-        dbItem.setEnabled( false );
+      //dbItem = new BMenuItem( "Use Internal Database" );
+      //  dbItem.setEnabled( false );
       printItem = new BMenuItem( "Print", new Shortcut( 'P', Shortcut.CTRL_MASK ) );
       resetItem = new BMenuItem( "Reset", new Shortcut( 'R', Shortcut.CTRL_MASK ) );
       exitItem = new BMenuItem( "Exit", new Shortcut( 'Q', Shortcut.CTRL_MASK ) );
 
     actionsMenu.add( calcItem );
-    actionsMenu.add( dbItem );
+    //actionsMenu.add( dbItem );
     actionsMenu.add( printItem );
     actionsMenu.add( new BSeparator() );
     actionsMenu.add( resetItem );

@@ -23,8 +23,11 @@
  */
 package avalonscrollmaker20;
 
+import avalonscrollmaker20.AnothakScroll.Element;
+import avalonscrollmaker20.AnothakScroll.NewSchool;
 import buoy.widget.ColumnContainer;
 import buoy.widget.LayoutInfo;
+import java.util.ArrayList;
 
 /**
  * @desc   Object for displaying an Element Tab inside Simple Design
@@ -90,6 +93,17 @@ public class SimpleTab extends ColumnContainer
     numSpells += zunRow.calculate();
 
     return numSpells;
+  }
+
+  public void buildSimpleList( ArrayList<AnothakScroll> whichList, Element whichElement )
+  {
+    theksoRow.buildSimpleList( whichList, whichElement, NewSchool.THEKSO );
+    hetterRow.buildSimpleList( whichList, whichElement, NewSchool.HETTER );
+    chattenRow.buildSimpleList( whichList, whichElement, NewSchool.CHATTEN );
+    xietepRow.buildSimpleList( whichList, whichElement, NewSchool.XIETEP );
+    tasolRow.buildSimpleList( whichList, whichElement, NewSchool.TASOL );
+    ojiinRow.buildSimpleList( whichList, whichElement, NewSchool.OJIIN );
+    zunRow.buildSimpleList( whichList, whichElement, NewSchool.ZUN );
   }
 
 }

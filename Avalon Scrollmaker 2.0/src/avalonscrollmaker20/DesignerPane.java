@@ -24,6 +24,7 @@
 package avalonscrollmaker20;
 
 import buoy.widget.BButton;
+import buoy.widget.BComboBox;
 import buoy.widget.BLabel;
 import buoy.widget.BOutline;
 import buoy.widget.BTextField;
@@ -45,7 +46,7 @@ public class DesignerPane extends FormContainer
   public BTextField spellCodeRead;
   public BTextArea spellTitleEdit;
   public BTextArea spellTitleRead;
-  public BTextField spellSchoolEdit;
+  public BComboBox spellSchoolEdit;
   public BTextField spellSchoolRead;
   public BButton spellAdd;
   public BButton spellRem;
@@ -95,8 +96,9 @@ public class DesignerPane extends FormContainer
       spellTitleRead.setEditable( false );
       spellTitleRead.setBackground( spellCodeRead.getBackground() );
       spellTitleRead.setFocusable( false );
-    spellSchoolEdit = new BTextField( WIDTH );
-      spellSchoolEdit.getComponent().setHorizontalAlignment( JTextField.CENTER );
+    spellSchoolEdit = new BComboBox( new javax.swing.DefaultComboBoxModel( AnothakScroll.NewSchool.values() ) );
+      spellSchoolEdit.getComponent().setAlignmentY( javax.swing.JComboBox.CENTER_ALIGNMENT );
+      spellSchoolEdit.setSelectedValue( AnothakScroll.NewSchool.UNDEFINED );
     spellSchoolRead = new BTextField( WIDTH );
       spellSchoolRead.getComponent().setHorizontalAlignment( JTextField.CENTER );
       spellSchoolRead.setEditable( false );
@@ -118,10 +120,10 @@ public class DesignerPane extends FormContainer
   public void reset()
   {
     spellCodeEdit.setText( "" );
-    spellCodeRead.setText(  "" );
+    spellCodeRead.setText( "" );
     spellTitleEdit.setText( "" );
     spellTitleRead.setText( "" );
-    spellSchoolEdit.setText( "" );
+    spellSchoolEdit.setSelectedValue( AnothakScroll.NewSchool.UNDEFINED );
     spellSchoolRead.setText( "" );
   }
 

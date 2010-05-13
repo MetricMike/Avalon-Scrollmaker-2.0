@@ -23,13 +23,16 @@
  */
 package avalonscrollmaker20;
 
+import avalonscrollmaker20.AnothakScroll.Element;
 import buoy.widget.BLabel;
 import buoy.widget.BTextField;
 import buoy.widget.LayoutInfo;
 import buoy.widget.GridContainer;
 import java.awt.Insets;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import avalonscrollmaker20.AnothakScroll.NewSchool;
 
 /**
  * @desc   Object for displaying label/input fields for a School in a SimpleTab
@@ -110,4 +113,30 @@ public class SimpleSchoolRow extends GridContainer
     return totalNum;
   }
 
+  public void buildSimpleList( ArrayList<AnothakScroll> whichList, Element whichElement, NewSchool whichSchool )
+  {
+    char elementChar = whichElement.toString().toLowerCase().charAt( 0 );
+    int spells, breaths;
+    try
+    {
+      spells = Integer.parseInt( spellInput.getText() );
+    }
+    catch( NumberFormatException ex )
+    {
+      spells = 0;
+    }
+    try
+    {
+      breaths = Integer.parseInt( breathInput.getText() );
+    }
+    catch( NumberFormatException ex )
+    {
+      breaths = 0;
+    }
+
+    for( int i = 0; i < spells; i++ )
+      whichList.add( new AnothakScroll( elementChar + "101", whichSchool ) );
+    for( int i = 0; i < breaths; i++ )
+      whichList.add( new AnothakScroll( elementChar + "701", whichSchool ) );
+  }
 }
